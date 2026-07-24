@@ -59,3 +59,4 @@ src/scores.py        high-score persistence
 src/ui.py             gradients, panels, buttons, text helpers
 levels/*.json         level layouts
 ```
+# arkanoid_pygame

@@ -11,6 +11,8 @@ from screens.menu import run as menu_screen
 from screens.settings import run as settings_screen
 from screens.win import run as win_screen
 
+MAX_LEVEL = 3
+
 
 def main() -> None:
     pygame.init()
@@ -30,8 +32,12 @@ def main() -> None:
         elif state == GameState.SETTINGS:
             state = settings_screen(screen, clock)
         elif state == GameState.GAME:
-            # TODO: increase level #
-            state = game_screen(screen, clock, level)
+            result = game_screen(screen, clock, level)
+            if result == GameState.WIN and level < MAX_LEVEL:
+                level += 1
+                state = GameState.GAME
+            else:
+                state = result
         elif state == GameState.WIN:
             state = win_screen(screen, clock)
         elif state == GameState.GAMEOVER:
